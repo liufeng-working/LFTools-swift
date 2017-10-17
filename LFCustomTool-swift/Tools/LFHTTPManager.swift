@@ -9,8 +9,10 @@
 import UIKit
 import AFNetworking
 
-class LFHTTPManager: AFHTTPSessionManager {
-    public static let shareManager: LFHTTPManager = {
+public class LFHTTPManager: AFHTTPSessionManager {
+    
+    /// 单例
+    public static let shareHTTPManager: LFHTTPManager = {
         let manager = LFHTTPManager()
         manager.responseSerializer.acceptableContentTypes?.insert("text/html")
         return manager
@@ -20,7 +22,7 @@ class LFHTTPManager: AFHTTPSessionManager {
 //MARK: - 封装的方法
 extension LFHTTPManager {
     
-    //post
+    /// post方法
     public func POST(urlStr: String, parameters: [String: Any], success: ((_ object: [String: Any]) -> ())?, failure: ((_ error: Error) -> ())?) {
         self.post(urlStr, parameters: parameters, progress: nil, success: { (task: URLSessionDataTask, responseObject: Any?) in
             success?(responseObject as! [String: Any])
@@ -29,7 +31,7 @@ extension LFHTTPManager {
         }
     }
     
-    //get
+    /// get方法
     public func GET(urlStr: String, parameters: [String: Any], success: ((_ object: [String: Any]) -> ())?, failure: ((_ error: Error) -> ())?) {
         self.get(urlStr, parameters: parameters, progress: nil, success: { (task: URLSessionDataTask, responseObject: Any?) in
             success?(responseObject as! [String: Any])

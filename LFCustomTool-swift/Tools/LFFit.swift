@@ -8,38 +8,43 @@
 
 import UIKit
 
-class LFFit: NSObject {
+public class LFFit: NSObject {
+    
+}
 
+/// 公开方法
+extension LFFit {
+    
     /// 根据指定size，获取等比例height
     ///
     /// - Parameters:
     ///   - width: 宽度
     ///   - size: 目标尺寸
     /// - Returns: 高度
-    static func fitHeight(forWidth width: CGFloat, targetSize size: CGSize) -> CGFloat {
+    public static func fitHeight(forWidth width: CGFloat, targetSize size: CGSize) -> CGFloat {
         return width*size.height/size.width
     }
-
+    
     /// 根据指定size，获取等比例width
     ///
     /// - Parameters:
     ///   - height: 高度
     ///   - size: 目标尺寸
     /// - Returns: 宽度
-    static func fitWidth(forHeight height: CGFloat, targetSize size: CGSize) -> CGFloat {
+    public static func fitWidth(forHeight height: CGFloat, targetSize size: CGSize) -> CGFloat {
         return height*size.width/size.height
     }
-
+    
     /// 调节位置（x／y坐标）
     ///
     /// - Parameters:
     ///   - original: 原始大小
     ///   - max: 最大大小
     /// - Returns: 合适的坐标值
-    static func fitOrigin(original: CGFloat, max: CGFloat) -> CGFloat {
+    public static func fitOrigin(original: CGFloat, max: CGFloat) -> CGFloat {
         return original > max ? 0 : (max - original)*0.5
     }
-
+    
     /// 等比例压缩尺寸 至 指定范围
     ///
     /// - Parameters:
@@ -47,7 +52,7 @@ class LFFit: NSObject {
     ///   - targetSize: 目标尺寸
     ///   - backMax: 是否返回小于指定范围的最大大小(默认false)
     /// - Returns: 等比例压缩后的尺寸
-    static func fitSize(originalSize: CGSize, targetSize: CGSize, backMax: Bool = false) -> CGSize {
+    public static func fitSize(originalSize: CGSize, targetSize: CGSize, backMax: Bool = false) -> CGSize {
         let targetW = targetSize.width
         let targetH = targetSize.height
         let maxScale = targetW*1.0/targetH
@@ -82,7 +87,7 @@ class LFFit: NSObject {
     ///   - targetWidth: 目标宽度
     ///   - backMax: 是否返回最大尺寸(默认false)
     /// - Returns: 压缩后的尺寸
-    static func fitSize(originalSize: CGSize, targetWidth: CGFloat, backMax: Bool = false) -> CGSize {
+    public static func fitSize(originalSize: CGSize, targetWidth: CGFloat, backMax: Bool = false) -> CGSize {
         let originalW = originalSize.width
         let originalH = originalSize.height
         if backMax || originalSize.width > targetWidth {
@@ -99,7 +104,7 @@ class LFFit: NSObject {
     ///   - targetHeight: 目标高度
     ///   - backMax: 是否返回最大尺寸(默认false)
     /// - Returns: 压缩后的尺寸
-    static func fitSize(originalSize: CGSize, targetHeight: CGFloat, backMax: Bool = false) -> CGSize {
+    public static func fitSize(originalSize: CGSize, targetHeight: CGFloat, backMax: Bool = false) -> CGSize {
         let originalW = originalSize.width
         let originalH = originalSize.height
         if backMax || originalH > targetHeight {

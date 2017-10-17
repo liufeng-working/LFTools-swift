@@ -9,7 +9,14 @@
 import Foundation
 
 extension Date {
-    static func dateString(originString: String, originStringDateFormat: String = "EEE MM dd HH:mm:ss Z yyyy") -> String {
+    
+    /// 从时间字符串转换成可阅读的字符串
+    ///
+    /// - Parameters:
+    ///   - originString: 原字符串
+    ///   - originStringDateFormat: 原字符串的时间格式
+    /// - Returns: 可阅读字符串
+    public static func readableString(from originString: String, originStringDateFormat: String = "EEE MM dd HH:mm:ss Z yyyy") -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = originStringDateFormat
         dateFormatter.locale = Locale(identifier: "en")
@@ -46,5 +53,29 @@ extension Date {
             }
         }
         return timeStr
+    }
+    
+    /// 从秒数转成媒体式字符串
+    ///
+    /// - Parameter timeInterval: 描述
+    /// - Returns: 媒体式字符串
+    public static func mediaString(second timeInterval: TimeInterval) -> String {
+        
+        if timeInterval <= 0 {
+            return "00:00"
+        }
+        
+        let second = round(timeInterval) //四舍五入
+        let dateFormatter = DateFormatter()
+        if second < 60*60 {//1小时以内
+            dateFormatter.dateFormat = "mm:ss"
+        }else if second < 60*60*24 {//24小时以内
+            dateFormatter.dateFormat = "HH:mm:ss"
+        }else {//大于一天
+            return "23:59:59";
+        }
+        
+        let date = Date(timeIntervalSince1970: second)
+        return dateFormatter.string(from: date)
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-func LFLog(_ message: Any..., separator: String = " ", terminator: String  = "\n", file: String = #file, funcName: String = #function, line: Int = #line) {
+public func LFLog(_ message: Any..., separator: String = " ", terminator: String  = "\n", file: String = #file, funcName: String = #function, line: Int = #line) {
     #if DEBUG
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSS"
